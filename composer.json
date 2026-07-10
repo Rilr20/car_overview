@@ -1,0 +1,12 @@
+{
+    "name": "rilr20/car_info",
+    "authors": [
+        {
+            "name": "Rilr20",
+            "email": "nrrl99@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
