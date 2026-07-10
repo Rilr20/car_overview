@@ -1,11 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h!>Hello World!</h>
-</body>
-</html>
+<?php
+
+$pageReference = $_GET["page"] ?? "index";
+
+$base = basename(__FILE__, ".php");
+
+
+$pages = [
+    "index" => [
+        "title" => "Home.",
+        "file" => __DIR__ . "/view/home.php",
+    ],
+    "cars" => [
+        "title" => "Search",
+        "file" => __DIR__ . "/view/search.php",
+    ],
+    "about" => [
+        "title" => "About",
+        "file" => __DIR__ . "/view/about.php",
+    ],
+];
+
+$page = $pages[$pageReference] ?? null;
+
+$title = $page["title"] ?? "404";
+$title .= " | car.rilr20.me";
+
+// Render the page
+require __DIR__ . "/view/header.php";
+require __DIR__ . "/view/multipage.php";
+require __DIR__ . "/view/footer.php";
