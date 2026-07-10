@@ -16,7 +16,7 @@ jobs:
       - name: Deploy
         uses: burnett01/rsync-deployments@v8
         with:
-          switches: -avzr --delete --exclude='.git' --exclude='.github'
+          switches: -avzr --delete --exclude='.git' --exclude='.github' --exclude='.well-known'
           path: ./
           remote_path: /var/www/car.rilr20.me/
           remote_host: ${{ secrets.SSH_HOST }}
