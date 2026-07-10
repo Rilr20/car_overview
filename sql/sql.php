@@ -28,29 +28,30 @@ try {
     $sql = "
     CREATE TABLE IF NOT EXISTS cars (
         id INT AUTO_INCREMENT PRIMARY KEY,
-
+        
+        reg_number VARCHAR(7) NOT NULL,
         brand VARCHAR(50) NOT NULL,
-        model VARCHAR(100) NOT NULL,
+        model VARCHAR(50) NOT NULL,
 
-        year INT,
+        vehicle_type VARCHAR(50),
+        gearbox VARCHAR(50),
+        model_year INT,
 
-        registration VARCHAR(20),
-
-        price INT,
-
+        fuel_type VARCHAR(30),
         mileage INT,
+        horsepower INT,
+        acceleration DECIMAL(4,2),
 
-        fuel_type VARCHAR(50),
+        fuel_consumption DECIMAL(4,2),
 
-        transmission VARCHAR(50),
-
-        consumption DECIMAL(4,2),
+        location VARCHAR(100),
 
         description TEXT,
 
-        url TEXT,
+        url VARCHAR(255),
 
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        UNIQUE (reg_number)
     );
     ";
     $conn->exec($sql);
