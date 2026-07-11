@@ -7,12 +7,17 @@ $base = basename(__FILE__, ".php");
 
 $pages = [
     "index" => [
-        "title" => "Home.",
+        "title" => "Home",
         "file" => __DIR__ . "/view/home.php",
     ],
     "cars" => [
         "title" => "Search",
         "file" => __DIR__ . "/view/search.php",
+    ],
+    "car-detail" => [
+        "title" => "title", 
+        "file" => __DIR__ . "/view/car-detail.php",
+        "hidden" => true
     ],
     "about" => [
         "title" => "About",
