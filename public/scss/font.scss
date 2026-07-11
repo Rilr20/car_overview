@@ -3,7 +3,7 @@
 
 .header-title {
     font-family: "Contrail One", sans-serif;
-    text-shadow: 1px 1px  colours.$colour-primary;
+    text-shadow: 1px 1px colours.$colour-primary; 
     font-size: 64px;
 }
 
@@ -12,7 +12,7 @@
     font-family: "Cantarell", sans-serif;
     font-size: 24px;
     text-decoration: none;
-    color: black;
+    color: colours.$text-main;
 }
 
 .page-title {
@@ -25,12 +25,12 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700; 
     margin-top: 0;    
 }
+
 p {
     color: colours.$text-main;
     font-weight: 500;
     line-height: 1.6; 
 }
-
 
 .search {
     margin-bottom: 0px;

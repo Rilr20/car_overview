@@ -2,22 +2,24 @@
 @use 'font.scss';
 @use 'header.scss';
 @use 'footer.scss';
+@use 'car.scss';
 
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
     width: 80%;
     margin: auto;
     background-color: #eff1ed;
+    color: colours.$text-main; 
 }
 
 .wrap-main {
     width: 80%;
     margin: auto;
-    // padding: 3em;
     min-height: 570px;
 
     main {
@@ -30,7 +32,7 @@ body {
         gap: 1.5rem;
         justify-content: space-between;
         align-items: flex-end;
-        
+
         div {
             display: flex;
             flex-direction: column;
@@ -40,16 +42,27 @@ body {
 
             label {
                 font-weight: bold;
+                color: colours.$text-main;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
             }
 
             input,
             select {
                 width: 100%;
                 padding: 0.5rem;
-                box-sizing: border-box;
                 text-align: center;
-                border: 1px solid colours.$text-main;
+                border: 1px solid rgba(colours.$text-main, 0.4);
                 border-radius: 5px;
+                color: colours.$text-title;
+                background-color: transparent;
+                transition: border-color 0.25s;
+
+                &:focus {
+                    outline: none;
+                    border-color: colours.$colour-primary;
+                }
             }
         }
 
@@ -60,22 +73,31 @@ body {
             button {
                 padding: 0.5rem 1.5rem;
                 cursor: pointer;
-                border: 1px solid colours.$text-main;
+                border: 2px solid colours.$text-main;
                 border-radius: 5px;
+                background-color: transparent;
+                color: colours.$text-main;
+                font-weight: bold;
+                transition: 0.25s;
+
+                &:hover {
+                    background-color: colours.$text-main;
+                    color: #eff1ed;
+                }
             }
         }
-
-
     }
 
     #search-results table {
         margin: 1em auto auto auto;
         padding: 0.5em;
         border: 1px solid colours.$colour-success;
+        border-radius: 0px 0px 5px 5px;
         .table-caption {
             // color: colours.$colour-success;
             background-color: colours.$colour-success;
             color: #fff;
+        border-radius: 5px 5px 0px 0px;
         }
         tr td {
             min-width: 150px;
@@ -90,16 +112,32 @@ body {
             }
         }
 
+        tr .nofound {
+            text-align: center !important;
+            color: colours.$colour-error;
+            font-weight: bold;
+        }
     }
 }
 
 .green-box {
-    background-color: #49a078;
+    background-color: colours.$colour-success;
     color: #eff1ed;
-    margin: 0.5em auto 0.5em auto;
+    margin: 0.5em auto;
     padding: .25rem .75rem;
     border-radius: 5px;
     font-weight: bold;
-    width: 153.6px;
+    width: fit-content;
+}
 
+.error {
+    background-color: colours.$colour-error;
+    color: #eff1ed;
+    margin: 0.5em auto;
+    padding: .25rem .75rem;
+    border-radius: 5px;
+    font-weight: bold;
+    width: fit-content;
+    max-width: 90%;
+    text-align: center;
 }
