@@ -16,11 +16,6 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader
 
-      - name: Check vendor before deploy
-        run: |
-          ls -la vendor
-          test -f vendor/autoload.php && echo "autoload exists"
-
       - name: Create .env
         run: |
           cat <<EOF > .env
