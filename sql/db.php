@@ -21,5 +21,11 @@ try {
 
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die("Coult not connect! " . $e->getMessage());
+    echo "
+    <div class='error-container'>
+        <p class='error'>
+            <strong>Coult not connect!  </strong> {$e->getMessage()}
+        </p>
+    </div>";
+    die();
 }
