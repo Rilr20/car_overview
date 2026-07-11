@@ -1,0 +1,105 @@
+@use 'colours.scss';
+@use 'font.scss';
+@use 'header.scss';
+@use 'footer.scss';
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    width: 80%;
+    margin: auto;
+    background-color: #eff1ed;
+}
+
+.wrap-main {
+    width: 80%;
+    margin: auto;
+    // padding: 3em;
+    min-height: 570px;
+
+    main {
+        height: 100%;
+    }
+
+    #search-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: space-between;
+        align-items: flex-end;
+        
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex: 1;
+            min-width: 200px;
+
+            label {
+                font-weight: bold;
+            }
+
+            input,
+            select {
+                width: 100%;
+                padding: 0.5rem;
+                box-sizing: border-box;
+                text-align: center;
+                border: 1px solid colours.$text-main;
+                border-radius: 5px;
+            }
+        }
+
+        .button-div {
+            flex: 0 0 100%;
+            margin-top: 1rem;
+
+            button {
+                padding: 0.5rem 1.5rem;
+                cursor: pointer;
+                border: 1px solid colours.$text-main;
+                border-radius: 5px;
+            }
+        }
+
+
+    }
+
+    #search-results table {
+        margin: 1em auto auto auto;
+        padding: 0.5em;
+        border: 1px solid colours.$colour-success;
+        .table-caption {
+            // color: colours.$colour-success;
+            background-color: colours.$colour-success;
+            color: #fff;
+        }
+        tr td {
+            min-width: 150px;
+
+            &:nth-child(1) {
+                text-align: left;
+            }
+
+            &:nth-child(2),
+            &:nth-child(3) {
+                text-align: center;
+            }
+        }
+
+    }
+}
+
+.green-box {
+    background-color: #49a078;
+    color: #eff1ed;
+    margin: 0.5em auto 0.5em auto;
+    padding: .25rem .75rem;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 153.6px;
+
+}

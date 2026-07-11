@@ -1,0 +1,39 @@
+@use 'colours.scss';
+header {
+    margin-top: 1.5em;
+    .header-title {
+        text-align: center;
+    }
+
+    nav {
+        height: 65px;
+        margin: auto;
+
+        ul {
+            display: flex;
+            justify-content: space-evenly;
+            list-style: none;
+
+            li {
+                padding: 0 1em 0 1em;
+
+            }
+        }
+
+        .selected {
+            background-color: white;
+            padding: 0 1em 0 1em;
+            text-decoration: 2px underline;
+            text-decoration-color: colours.$colour-primary;
+        }
+
+    }
+
+    .nav-divider {
+        min-width: 50%;
+        width: 80%;
+        margin: auto;
+        height: 5px;
+        background-color: white;
+    }
+}

@@ -1,2 +1,2 @@
 
-<h1>About</h1>
+<h2 class="page-title">About</h2>

@@ -1,0 +1,41 @@
+@use 'colours.scss';
+@import url('https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=Contrail+One&display=swap');
+
+.header-title {
+    font-family: "Contrail One", sans-serif;
+    text-shadow: 2px 2px  colours.$text-main;
+    font-size: 64px;
+}
+
+.nav-link a:after,
+.nav-link a {
+    font-family: "Cantarell", sans-serif;
+    font-size: 24px;
+    text-decoration: none;
+    color: colours.$colour-primary;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: colours.$text-title;
+    font-weight: 700; 
+    margin-top: 0;    
+}
+p {
+    color: colours.$text-main;
+    font-weight: 500;
+    line-height: 1.6; 
+}
+
+
+.search {
+    margin-bottom: 0px;
+}
+
+* {
+    font-family: "Chivo Mono", monospace;
+}

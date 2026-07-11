@@ -1,1 +1,2 @@
-<h1>Home</h1>
+<h2 class="page-title">Home</h2>
+
