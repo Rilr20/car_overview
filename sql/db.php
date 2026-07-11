@@ -8,8 +8,8 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
 
-echo "DB connection is  " . $_ENV["DB_CONNECTION"] . "!\n";
-echo "DB host is  " . $_ENV["DB_HOST"] . "!\n";
+// echo "DB connection is  " . $_ENV["DB_CONNECTION"] . "!\n";
+// echo "DB host is  " . $_ENV["DB_HOST"] . "!\n";
 
 
 try {
