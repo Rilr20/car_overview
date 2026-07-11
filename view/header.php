@@ -19,8 +19,9 @@
                         continue;
                     }
                     ?>
-                    <li class="nav-link <?= (isset($_GET['page']) && $_GET['page'] === $key) ? ' selected' : '' ?>"><a href="?page=<?= $key ?>"><?= $value["title"] ?></a></li>
-                <?php endforeach; ?>
+                    <li class="nav-link <?= (!isset($_GET['page']) && $key === 'index') || (isset($_GET['page']) && $_GET['page'] === $key) ? ' selected' : '' ?>">
+                        <a href="?page=<?= $key ?>"><?= $value["title"] ?></a>
+                    </li> <?php endforeach; ?>
             </ul>
             <div class="divider"></div>
         </nav>
