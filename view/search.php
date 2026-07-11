@@ -68,11 +68,14 @@ $total = carCount($conn);
             <table>
                 <caption class="table-caption">${results.length} Items Found</caption>
                 <thead>
-                    <tr>
-                        <th>Model</th>
-                        <th>Reg. Number</th>
-                        <th>Year</th>
-                    </tr>
+                    ${results.length ? `
+                        <tr>
+                            <th>Model</th>
+                            <th>Reg. Number</th>
+                            <th>Year</th>
+                        </tr>` :
+                     ``}
+
                 </thead>
                 <tbody>
                     ${
@@ -88,7 +91,7 @@ $total = carCount($conn);
                                     <td>${car.model_year}</td>
                                 </tr>
                             `).join("")
-                            : `<tr><td colspan="3">No cars found.</td></tr>`
+                            : `<tr><td class="nofound" colspan="4">No cars found.</td></tr>`
                     }
                 </tbody>
             </table>
@@ -96,7 +99,7 @@ $total = carCount($conn);
         } catch (err) {
             console.error(err);
             document.getElementById("search-results").innerHTML =
-                "<p>Unable to load search results.</p>";
+                '<p class="error">Unable to load search results.</p>';
         }
     });
 </script>
