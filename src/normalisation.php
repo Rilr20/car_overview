@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-function normaliseMileage($mil) {
+function normaliseMileage(?string $mil) {
     if (!$mil) {
         return null;
     }
     $normalised = str_replace(' ', '', $mil);
     return filter_var($normalised, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
 }
-function normaliseFuelConsumption($fc) {
+function normaliseFuelConsumption(?string $fc) {
     if (!$fc) {
         return null;
     }
