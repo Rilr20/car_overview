@@ -13,6 +13,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Check vendor before deploy
+        run: |
+          ls -la vendor
+          test -f vendor/autoload.php && echo "autoload exists"
+
       - name: Create .env
         run: |
           cat <<EOF > .env
@@ -27,17 +35,10 @@ jobs:
       - name: Deploy
         uses: burnett01/rsync-deployments@v8
         with:
-          switches: -avzr --delete --exclude='.git' --exclude='.github' --exclude='.well-known'
+          switches: -avzr --delete --exclude='.git' --exclude='.github' --exclude='.well-known' --exclude='.env'
           path: ./
           remote_path: /var/www/car.rilr20.me/
           remote_host: ${{ secrets.SSH_HOST }}
           remote_port: ${{ secrets.SSH_PORT }}
           remote_user: ${{ secrets.SSH_USER }}
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Install Composer dependencies
-        run: composer install --no-dev --optimize-autoloader
-      - name: Check vendor before deploy
-        run: |
-          ls -la vendor
-          test -f vendor/autoload.php && echo "autoload exists"
