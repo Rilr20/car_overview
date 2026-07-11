@@ -19,7 +19,7 @@
                         continue;
                     }
                     ?>
-                    <li class="nav-link <?= (!isset($_GET['page']) && $key === 'index') || (isset($_GET['page']) && $_GET['page'] === $key) ? ' selected' : '' ?>">
+                    <li class="nav-link up <?= (!isset($_GET['page']) && $key === 'index') || (isset($_GET['page']) && $_GET['page'] === $key) ? ' selected' : '' ?>">
                         <a href="?page=<?= $key ?>"><?= $value["title"] ?></a>
                     </li> <?php endforeach; ?>
             </ul>
