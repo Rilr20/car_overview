@@ -1,11 +1,14 @@
 @use 'colours.scss';
+
 header {
     margin-top: 1.5em;
+
     .header-title {
         text-align: center;
     }
 
     nav {
+
         height: 65px;
         margin: auto;
 
@@ -21,19 +24,25 @@ header {
         }
 
         .selected {
-            background-color: white;
+            background-color: colours.$colour-primary;
             padding: 0 1em 0 1em;
             text-decoration: 2px underline;
-            text-decoration-color: colours.$colour-primary;
+            text-decoration-color: black;
         }
 
     }
 
-    .nav-divider {
-        min-width: 50%;
+    .divider {
         width: 80%;
-        margin: auto;
-        height: 5px;
-        background-color: white;
     }
+
 }
+
+.divider {
+    min-width: 50%;
+    margin: auto;
+    height: 5px;
+    background-color: colours.$colour-primary;
+    border-radius: 5px;
+}
+
