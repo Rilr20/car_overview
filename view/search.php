@@ -2,31 +2,42 @@
 require_once __DIR__ . "/../sql/db.php";
 require_once __DIR__ . "/../sql/read.php";
 $brands = formData($conn);
+$total = carCount($conn);
 ?>
 
-<h2>Search for a Car</h2>
+<h2 class="page-title search">Search for a Car</h2>
+<p class="green-box"><?= $total ?> Cars in DB.</p>
 
 <form id="search-form" action="api/cars.php" method="GET">
 
-    <label for="brand">Brand</label>
+    <div>
+        <label for="brand">Brand</label>
+        <!--<input id="brand" name="brand">  -->
+        <select id="brand" name="brand">
+            <option value="">Car brand</option>
+            <?php foreach ($brands as $brand): ?>
+                <option value="<?= htmlspecialchars($brand["brand"]) ?>">
+                    <?= htmlspecialchars($brand["brand"]) ?>
+                </option>
+            <?php endforeach; ?>
 
-    <!--<input id="brand" name="brand">  -->
-    <select id="brand" name="brand">
-        <option value="">Car brand</option>
-        <?php foreach ($brands as $brand): ?>
-            <option value="<?= htmlspecialchars($brand["brand"]) ?>">
-                <?= htmlspecialchars($brand["brand"]) ?>
-            </option>
-        <?php endforeach; ?>
-
-    </select>
-    <label for="model_year">Model Year</label>
-    <input min="0" type="number" id="model_year" name="model_year">
-
-    <label for="regNum">Swedish Registration Number</label>
-    <input id="regNum" name="regNum">
-
-    <button type="submit">Search</button>
+        </select>
+    </div>
+    <div>
+        <label for="model_year">Model Year</label>
+        <input min="0" type="number" id="model_year" name="model_year">
+    </div>
+    <div>
+        <label for="regNum">Swedish Registration Number</label>
+        <input id="regNum" name="regNum">
+    </div>
+    <div>
+        <label for="limit">Limit</label>
+        <input type="number" value="25" id="limit" name="limit">
+    </div>
+    <div class="button-div">
+        <button type="submit">Search</button>
+    </div>
 </form>
 
 <div id="search-results" class="search-results">
@@ -34,51 +45,58 @@ $brands = formData($conn);
 </div>
 
 <script>
-    document.getElementById('search-form').addEventListener("submit", async (e) => {
+    document.getElementById("search-form").addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        //get values
-        const brand = document.getElementById("brand").value
-        const model_year = document.getElementById("model_year").value
-        const regNum = document.getElementById("regNum").value
-        console.log("brand value: " + brand);
-        console.log("model_year value: " + model_year);
-        console.log("regNum value: " + regNum);
-
-        const response = await fetch(
-            `api/cars.php?brand=${brand}&model_year=${model_year}&regNum=${regNum}`
-        );
-        
-        const results = await response.json();
-
-        const searchResultsDiv = document.getElementById('search-results');
-        searchResultsDiv.innerHTML = "";
-        const table = document.createElement("table");
-        const header = table.createTHead();
-        const headerRow = header.insertRow();
-
-        ["Model", "Reg. Number", "Year"].forEach(text => {
-            const th = document.createElement("th");
-            th.textContent = text;
-            headerRow.appendChild(th);
-        });
-        const tableBody = table.createTBody();
-
-        results.forEach(row => {
-            const tr = tableBody.insertRow();
-
-            const model = tr.insertCell();
-            model.textContent = row.model;
-
-            const reg_number = tr.insertCell();
-            reg_number.innerHTML = `<a href="/index.php?page=car-detail&id=${row.id}">${row.reg_number}</a>`;
-
-            const year = tr.insertCell();
-            year.textContent = row.model_year;
-
-
+        const params = new URLSearchParams({
+            brand: document.getElementById("brand").value,
+            model_year: document.getElementById("model_year").value,
+            regNum: document.getElementById("regNum").value,
+            limit: document.getElementById("limit").value
         });
 
-        searchResultsDiv.appendChild(table);
-    })
+        try {
+            const response = await fetch(`api/cars.php?${params}`);
+
+            if (!response.ok) {
+                throw new Error("Request failed");
+            }
+
+            const results = await response.json();
+
+            document.getElementById("search-results").innerHTML = `
+            <table>
+                <caption class="table-caption">${results.length} Items Found</caption>
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Reg. Number</th>
+                        <th>Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${
+                        results.length
+                            ? results.map(car => `
+                                <tr>
+                                    <td>${car.model}</td>
+                                    <td>
+                                        <a href="/index.php?page=car-detail&id=${car.id}">
+                                            ${car.reg_number}
+                                        </a>
+                                    </td>
+                                    <td>${car.model_year}</td>
+                                </tr>
+                            `).join("")
+                            : `<tr><td colspan="3">No cars found.</td></tr>`
+                    }
+                </tbody>
+            </table>
+        `;
+        } catch (err) {
+            console.error(err);
+            document.getElementById("search-results").innerHTML =
+                "<p>Unable to load search results.</p>";
+        }
+    });
 </script>

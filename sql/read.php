@@ -1,6 +1,6 @@
 <?php
 
-function Search(string $brand, string $model_year,string $regNum, $conn) {
+function Search(string $brand, string $model_year,string $regNum, string $limit, $conn) {
     $conditions = [];
     $params = [];
     if ($brand != "") {
@@ -8,8 +8,8 @@ function Search(string $brand, string $model_year,string $regNum, $conn) {
         $params["brand"] = "%$brand%";
     }
 
-    if ($model_year > 0) {
-        $model_year = filter_var($model_year ?? null, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
+    $model_year = filter_var($model_year ?? null, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
+    if ($model_year != null && $model_year > 0) {
         $conditions[] = "model_year like :model_year";
         $params["model_year"] = "$model_year";
 
@@ -25,8 +25,13 @@ function Search(string $brand, string $model_year,string $regNum, $conn) {
         $sql .= " WHERE " . implode(" AND ", $conditions);
     }
 
+    $limit = filter_var($limit ?? null, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
+    if ($limit != null && $limit > 0) {
+        $sql .= " LIMIT " . $limit;
 
-    $sql .= " LIMIT 25";
+    }
+
+    // $sql .= " LIMIT 25";
     $stmt = $conn->prepare($sql);
     $stmt->execute($params);
     // var_dump($sql);
@@ -50,4 +55,13 @@ function formData($conn) {
     $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function carCount($conn) {
+    $sql = "SELECT count(reg_number) FROM cars;";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetch()[0];
 }

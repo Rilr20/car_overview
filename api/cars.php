@@ -9,6 +9,7 @@ $results = Search(
         $_GET["brand"] ?? "",
         $_GET["model_year"] ?? "",
         $_GET["regNum"] ?? "",
+        $_GET['limit'] ?? "",
         $conn
     );
 
