@@ -15,7 +15,7 @@ $pages = [
         "file" => __DIR__ . "/view/search.php",
     ],
     "car-detail" => [
-        "title" => "title", 
+        "title" => "Details", 
         "file" => __DIR__ . "/view/car-detail.php",
         "hidden" => true
     ],
