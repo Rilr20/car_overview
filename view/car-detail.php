@@ -19,50 +19,62 @@ $res = getCarById($carId, $conn);
     <!-- grids n stuff -->
     <div class="detail-item-1">
         <h4>Brand</h4>
+        <hr>
         <p><?= $res['brand'] ?></p>
     </div>
     <div class="detail-item-2">
         <h4>Model</h4>
+        <hr>
         <p><?= $res['model'] ?></p>
     </div>
     <div class="detail-item-3">
-        <h4>Vehicle Type</h4>
+        <h4>Body Styles</h4>
+        <hr>
         <p><?= $res['vehicle_type'] ?></p>
     </div>
     <div class="detail-item-4">
-        <h4>gearbox</h4>
+        <h4>Gearbox</h4>
+        <hr>
         <p><?= $res['gearbox'] ?></p>
     </div>
     <div class="detail-item-5">
-        <h4>model_year</h4>
+        <h4>Model Year</h4>
+        <hr>
         <p><?= $res['model_year'] ?></p>
     </div>
     <div class="detail-item-6">
-        <h4>fuel_type</h4>
+        <h4>Fuel Type</h4>
+        <hr>
         <p><?= $res['fuel_type'] ?></p>
     </div>
     <div class="detail-item-7">
-        <h4>mileage</h4>
-        <p><?= $res['mileage'] ?></p>
+        <h4>Mileage</h4>
+        <hr>
+        <p><?= $res['mileage'] ?> <?= isset($res['mileage']) ? 'Mil' : '' ?></p>
     </div>
     <div class="detail-item-8">
-        <h4>horsepower</h4>
+        <h4>Horsepower</h4>
+        <hr>
         <p><?= $res['horsepower'] ?></p>
     </div>
     <div class="detail-item-9">
-        <h4>acceleration</h4>
-        <p><?= $res['acceleration'] ?></p>
+        <h4>Acceleration</h4>
+        <hr>
+        <p><?= $res['acceleration'] ?><?= isset($res['acceleration']) ? 's' : '' ?></p>
     </div>
     <div class="detail-item-10">
-        <h4>fuel_consumption</h4>
-        <p><?= $res['fuel_consumption'] ?></p>
+        <h4>Consumption</h4>
+        <hr>
+        <p><?= isset($res['fuel_consumption']) && $res['fuel_consumption'] != 0 ? $res['fuel_consumption'] : '' ?><?= isset($res['fuel_consumption']) && $res['fuel_consumption'] != 0 ? 'l/100km' : '' ?> </p>
     </div>
     <div class="detail-item-11">
         <h4>location</h4>
+        <hr>
         <p><?= $res['location'] ?></p>
     </div>
     <div class="detail-item-12">
         <h4>URL</h4>
+        <hr>
         <a href="<?= $res['url'] ?>"><?= $res['reg_number'] ?></a>
     </div>
 
@@ -70,4 +82,3 @@ $res = getCarById($carId, $conn);
 
 <h3>Description</h3>
 <p><?= $res['description'] ?></p>
-
