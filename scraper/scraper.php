@@ -11,7 +11,7 @@ $html = file_get_contents($URL);
 
 $start = stripos($html, 'id="vehicle_card"');
 // echo $start;
-$end = stripos($html, '<!-- .tabs-panel -->', $offset = $start);
+$end = stripos($html, '<!-- .tabs-panel -->', $start);
 
 $length = $end - $start;
 
