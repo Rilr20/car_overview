@@ -2,25 +2,24 @@
 
 footer {
     width: 80%;
-    margin: 4em auto 2em auto; 
+    margin: 4em auto 2em auto;
     position: relative;
 
     .divider {
         width: 100%;
         height: 4px;
-        background: linear-gradient(90deg, 
-            rgba(colours.$colour-primary, 0.2) 0%, 
-            colours.$colour-primary 40%, 
-            colours.$colour-primary 60%, 
-            rgba(colours.$colour-primary, 0.2) 100%
-        );
+        background: linear-gradient(90deg,
+                rgba(colours.$colour-primary, 0.2) 0%,
+                colours.$colour-primary 40%,
+                colours.$colour-primary 60%,
+                rgba(colours.$colour-primary, 0.2) 100%);
         border-radius: 2px;
         margin-bottom: 1.25rem;
     }
 
     .footer-content {
         display: flex;
-        justify-content: space-between; 
+        justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
         gap: 1rem;
@@ -36,7 +35,7 @@ footer {
         }
 
         .github-link {
-            color: colours.$text-title; 
+            color: colours.$text-title;
             font-size: 0.9rem;
             font-weight: 700;
             text-decoration: none;
@@ -59,7 +58,7 @@ footer {
 
             &:hover {
                 color: colours.$colour-primary;
-                
+
                 &::after {
                     transform: scaleX(1);
                     transform-origin: bottom left;
