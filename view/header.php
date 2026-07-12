@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title><?= $title ?></title>
     <link rel="stylesheet" type="text/css" href="/public/css/style.min.css">
+    <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
