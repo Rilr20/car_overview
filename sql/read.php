@@ -3,18 +3,18 @@
 function Search(string $brand, string $model_year,string $regNum, string $limit, $conn) {
     $conditions = [];
     $params = [];
-    if ($brand != "") {
-        $conditions[] = "brand like :brand";
-        $params["brand"] = "%$brand%";
+    if ($brand !== "") {
+        $conditions[] = "brand = :brand";
+        $params["brand"] = $brand;
     }
 
     $model_year = filter_var($model_year ?? null, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
-    if ($model_year != null && $model_year > 0) {
+    if ($model_year !== null && $model_year > 0) {
         $conditions[] = "model_year = :model_year";
-        $params["model_year"] = "$model_year";
+        $params["model_year"] = $model_year;
 
     }
-    if ($regNum != "") {
+    if ($regNum !== "") {
         $conditions[] = "reg_number like :reg_number";
         $params["reg_number"] = "%$regNum%";
 
@@ -41,7 +41,7 @@ function Search(string $brand, string $model_year,string $regNum, string $limit,
 }
 
 function getCarById(int $id, $conn) {
-    $sql = "SELECT * FROM cars where ID = ?";
+    $sql = "SELECT * FROM cars where id = ?";
 
     $stmt = $conn->prepare($sql);
     $stmt->execute([$id]);
