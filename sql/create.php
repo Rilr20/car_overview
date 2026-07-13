@@ -10,12 +10,12 @@ function createCar(Car $car, PDO $conn) {
         return;
     }
     try {
-        //TODO GLÖM INTE CREATEd_AT timestamp! om inte mysql db gör det automatiskt
         $sql = "INSERT INTO cars (reg_number, brand, model, vehicle_type, gearbox, model_year, fuel_type, mileage, horsepower, acceleration, fuel_consumption, location, description, url) VALUES (:reg_number, :brand, :model, :vehicle_type, :gearbox, :model_year, :fuel_type, :mileage, :horsepower, :acceleration, :fuel_consumption, :location, :description, :url)";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute((array)$car);
     } catch (PDOException $e) {
-        echo "ERROR: " . $e->getMessage() . " \n";
+        // echo "ERROR: " . $e->getMessage() . " \n";
+        throw $e;
     }
 }
