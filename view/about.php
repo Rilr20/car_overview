@@ -1,5 +1,5 @@
 <h2 class="page-title">About</h2>
-<p>Written in pure php!</p>
+<p class="center">Written in pure php!</p>
 <p>The webscraper takes the information from bilweb and saves it directly into a MySQL database.</p>
 <p>
     The stored data is then used by this application for an AJAX-based search form. With the following parameters: brand, model year, and registration number.
