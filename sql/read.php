@@ -10,7 +10,7 @@ function Search(string $brand, string $model_year,string $regNum, string $limit,
 
     $model_year = filter_var($model_year ?? null, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
     if ($model_year != null && $model_year > 0) {
-        $conditions[] = "model_year like :model_year";
+        $conditions[] = "model_year = :model_year";
         $params["model_year"] = "$model_year";
 
     }
