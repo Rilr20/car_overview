@@ -9,7 +9,7 @@ try {
     CREATE TABLE IF NOT EXISTS cars (
         id INT AUTO_INCREMENT PRIMARY KEY,
         
-        reg_number VARCHAR(7) NOT NULL,
+        reg_number CHAR(7) NOT NULL,
         brand VARCHAR(50) NOT NULL,
         model VARCHAR(50) NOT NULL,
 
