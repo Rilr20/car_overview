@@ -32,6 +32,7 @@ try {
 
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         UNIQUE (reg_number)
+        INDEX idx_brand (brand)
     );
     ";
     $conn->exec($sql);
