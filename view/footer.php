@@ -7,6 +7,9 @@
         </a>
     </div>
 </footer>
+<?php if (!empty($page["script"])): ?>
+    <script src="<?= $page["script"] ?>"></script>
+<?php endif; ?>
 </body>
 
 </html>

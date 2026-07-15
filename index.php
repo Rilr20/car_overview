@@ -13,6 +13,7 @@ $pages = [
     "cars" => [
         "title" => "Search",
         "file" => __DIR__ . "/view/search.php",
+        "script" => "/public/js/search.js",
     ],
     "car-detail" => [
         "title" => "Details", 
