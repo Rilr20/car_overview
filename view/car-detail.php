@@ -12,6 +12,11 @@ if (!$carId || !is_numeric($carId)) {
     return;
 }
 $res = getCarById($carId, $conn);
+// var_dump($res);
+if ($res === false) {
+    echo "<h2 class='center'>404 Car not found</h2>";
+    return;
+}
 ?>
 <h1 class="car-title"><?= $res['reg_number'] ?></h1>
 <!-- Individual car with info of it -->
