@@ -1,6 +1,6 @@
 <?php
 
-function Search(?string $brand, ?string $model_year,?string $regNum, ?string $limit, PDO $conn) {
+function Search(?string $brand, ?string $model_year,?string $regNum, ?string $limit, $conn) {
     $conditions = [];
     $params = [];
     if ($brand !== "") {
@@ -50,7 +50,7 @@ function getCarById(int $id, $conn) {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function formData($conn) {
+function formData(PDO $conn) {
     $sql = "SELECT DISTINCT brand FROM cars ORDER BY brand asc;";
 
     $stmt = $conn->prepare($sql);
@@ -59,7 +59,7 @@ function formData($conn) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function carCount($conn) {
+function carCount(PDO $conn) {
     $sql = "SELECT count(reg_number) FROM cars;";
 
     $stmt = $conn->prepare($sql);
