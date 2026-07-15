@@ -1,6 +1,6 @@
 <?php
 
-function Search(string $brand, string $model_year,string $regNum, string $limit, $conn) {
+function Search(?string $brand, ?string $model_year,?string $regNum, ?string $limit, PDO $conn) {
     $conditions = [];
     $params = [];
     if ($brand !== "") {
@@ -25,11 +25,13 @@ function Search(string $brand, string $model_year,string $regNum, string $limit,
         $sql .= " WHERE " . implode(" AND ", $conditions);
     }
 
-    $limit = filter_var($limit ?? null, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
-    if ($limit != null && $limit > 0) {
-        $sql .= " LIMIT " . $limit;
-
+    $limit = filter_var($limit, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
+    if ($limit === null || $limit <= 0) {
+        $limit = 25;
     }
+    $limit = min($limit, 100);
+
+    $sql .= " LIMIT " . $limit;
 
     // $sql .= " LIMIT 25";
     $stmt = $conn->prepare($sql);
