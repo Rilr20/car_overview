@@ -9,7 +9,7 @@ document.getElementById("search-form").addEventListener("submit", async (e) => {
     });
 
     try {
-        const response = await fetch(`api/cars.php?${params}`);
+        const response = await fetch(`/api/cars.php?${params}`);
 
         if (!response.ok) {
             throw new Error("Request failed");
@@ -36,7 +36,7 @@ document.getElementById("search-form").addEventListener("submit", async (e) => {
                                 <tr>
                                     <td>${car.model}</td>
                                     <td>
-                                        <a href="/index.php?page=car-detail&id=${car.id}">
+                                        <a href="/?page=car-detail&id=${car.id}">
                                             ${car.reg_number}
                                         </a>
                                     </td>

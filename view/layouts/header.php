@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title><?= $title ?></title>
-    <link rel="stylesheet" type="text/css" href="/public/css/style.min.css">
-    <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/css/style.min.css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 </head>
 
 <body>

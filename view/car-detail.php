@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../sql/db.php';
-require_once __DIR__ . "/../sql/read.php";
+require_once __DIR__ . '/../src/sql/db.php';
+require_once __DIR__ . "/../src/sql/read.php";
 // Grab the id from the URL query string
 $carId = $_GET['id'] ?? null;
 
@@ -60,7 +60,7 @@ if ($res === false) {
     <div class="detail-item-8">
         <h4>Horsepower</h4>
         <hr>
-        <p><?= $res['horsepower'] ?></p>
+        <p><?= $res['horsepower'] ?> <?= isset($res['horsepower']) ? "hp" : "" ?></p>
     </div>
     <div class="detail-item-9">
         <h4>Acceleration</h4>

@@ -7,9 +7,9 @@
         </a>
     </div>
 </footer>
-<?php if (!empty($page["script"])): ?>
-    <script src="<?= $page["script"] ?>"></script>
-<?php endif; ?>
+<?php foreach($page["scripts"] as $script) : ?>
+        <script src="<?= $script ?>"></script>
+<?php endforeach; ?>
 </body>
 
 </html>

@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
-require_once __DIR__ . "/../src/car.php";
+require_once __DIR__ . "/../car.php";
 require_once __DIR__ . '/../sql/create.php';
-require_once __DIR__ . '/../src/normalisation.php';
+require_once __DIR__ . '/../normalisation.php';
 function getAllUrls() {
 
 $URL = "https://bilweb.se/sok?query=&type=1&limit=1000&scrollid=12787640";

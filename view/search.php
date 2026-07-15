@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . "/../sql/db.php";
-require_once __DIR__ . "/../sql/read.php";
+require_once __DIR__ . "/../src/sql/db.php";
+require_once __DIR__ . "/../src/sql/read.php";
 $brands = formData($conn);
 $total = carCount($conn);
 ?>
@@ -8,7 +8,7 @@ $total = carCount($conn);
 <h2 class="page-title search">Search for a Car</h2>
 <p class="green-box"><?= $total ?> Cars in DB.</p>
 
-<form id="search-form" action="api/cars.php" method="GET">
+<form id="search-form" action="/api/cars.php" method="GET">
 
     <div>
         <label for="brand">Brand</label>

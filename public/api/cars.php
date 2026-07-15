@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
-require_once __DIR__ . '/../sql/db.php';
-require_once __DIR__ . "/../sql/read.php";
+require_once __DIR__ . '/../../src/sql/db.php';
+require_once __DIR__ . "/../../src/sql/read.php";
 ini_set('display_errors', '1');
 error_reporting(E_ALL);
 
