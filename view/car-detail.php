@@ -65,7 +65,7 @@ $res = getCarById($carId, $conn);
     <div class="detail-item-10">
         <h4>Consumption</h4>
         <hr>
-        <p><?= isset($res['fuel_consumption']) && $res['fuel_consumption'] != 0 ? $res['fuel_consumption'] : '' ?><?= isset($res['fuel_consumption']) && $res['fuel_consumption'] != 0 ? 'l/100km' : '' ?> </p>
+        <p><?= isset($res['fuel_consumption']) && $res['fuel_consumption'] != 0 ? $res['fuel_consumption'] . " l/100km" : '' ?>
     </div>
     <div class="detail-item-11">
         <h4>location</h4>
