@@ -31,7 +31,7 @@ try {
         url VARCHAR(255),
 
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        UNIQUE (reg_number)
+        UNIQUE (reg_number),
         INDEX idx_brand (brand)
     );
     ";
