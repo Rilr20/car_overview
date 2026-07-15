@@ -3,6 +3,7 @@ require_once __DIR__ . "/../src/sql/db.php";
 require_once __DIR__ . "/../src/sql/read.php";
 $brands = formData($conn);
 $total = carCount($conn);
+var_dump($_SESSION);
 ?>
 
 <h2 class="page-title search">Search for a Car</h2>
@@ -29,7 +30,7 @@ $total = carCount($conn);
     </div>
     <div>
         <label for="regNum">Swedish Registration Number</label>
-        <input id="regNum" name="regNum">
+        <input maxlength="6" id="regNum" name="regNum">
     </div>
     <div>
         <label for="limit">Limit</label>
