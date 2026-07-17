@@ -30,7 +30,7 @@ try {
     echo "
     <div class='error-container'>
         <p class='error'>
-            <strong>Coult not connect!  </strong> {$e->getMessage()}
+            <strong>Could not connect!  </strong> {$e->getMessage()}
         </p>
     </div>";
     die();
