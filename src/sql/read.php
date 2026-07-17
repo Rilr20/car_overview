@@ -3,7 +3,7 @@
 function Search(?string $brand, ?string $model_year,?string $regNum, ?string $limit, $conn) {
     $conditions = [];
     $params = [];
-    if ($brand !== "") {
+    if (!empty($brand)) {
         $conditions[] = "brand = :brand";
         $params["brand"] = $brand;
     }
@@ -14,7 +14,7 @@ function Search(?string $brand, ?string $model_year,?string $regNum, ?string $li
         $params["model_year"] = $model_year;
 
     }
-    if ($regNum !== "") {
+    if (!empty($regNum)) {
         $conditions[] = "reg_number like :reg_number";
         $params["reg_number"] = "%$regNum%";
 
@@ -31,8 +31,8 @@ function Search(?string $brand, ?string $model_year,?string $regNum, ?string $li
     }
     $limit = min($limit, 100);
 
+    $sql .= " ORDER BY created_at DESC"; # I added this row
     $sql .= " LIMIT " . $limit;
-
     // $sql .= " LIMIT 25";
     $stmt = $conn->prepare($sql);
     $stmt->execute($params);
