@@ -5,13 +5,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../..');
-$dotenv->required([
-    'DB_HOST',
-    'DB_PORT',
-    'DB_DATABASE',
-    'DB_USERNAME',
-    'DB_PASSWORD'
-]);
+$dotenv->load();
 
 
 // echo "DB connection is  " . $_ENV["DB_CONNECTION"] . "!\n";
