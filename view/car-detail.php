@@ -80,7 +80,7 @@ if ($res === false) {
     <div class="detail-item-12">
         <h4>URL</h4>
         <hr>
-        <a href="<?= $res['url'] ?>"><?= $res['reg_number'] ?></a>
+        <a target="_blank" href="<?= $res['url'] ?>"><?= $res['reg_number'] ?></a>
     </div>
 
 </div>
