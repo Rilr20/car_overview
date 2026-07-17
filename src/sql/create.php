@@ -10,10 +10,14 @@ function createCar(Car $car, PDO $conn) {
         return;
     }
     try {
-        $sql = "INSERT INTO cars (reg_number, brand, model, vehicle_type, gearbox, model_year, fuel_type, mileage, horsepower, acceleration, fuel_consumption, location, description, url) VALUES (:reg_number, :brand, :model, :vehicle_type, :gearbox, :model_year, :fuel_type, :mileage, :horsepower, :acceleration, :fuel_consumption, :location, :description, :url)";
+        $sql = "INSERT IGNORE INTO cars (reg_number, brand, model, vehicle_type, gearbox, model_year, fuel_type, mileage, horsepower, acceleration, fuel_consumption, location, description, url) VALUES (:reg_number, :brand, :model, :vehicle_type, :gearbox, :model_year, :fuel_type, :mileage, :horsepower, :acceleration, :fuel_consumption, :location, :description, :url)";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute((array)$car);
+
+        echo $stmt->rowCount()
+            ? "[INSERT] '{$car->reg_number}'\n"
+            : "[SKIP] '{$car->reg_number}', already exists\n";
     } catch (PDOException $e) {
         // echo "ERROR: " . $e->getMessage() . " \n";
         throw $e;
