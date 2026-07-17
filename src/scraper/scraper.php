@@ -1,47 +1,62 @@
 <?php
+
 declare(strict_types=1);
 require_once __DIR__ . "/../car.php";
 require_once __DIR__ . '/../sql/create.php';
 require_once __DIR__ . '/../normalisation.php';
-function getAllUrls() {
+function getAllUrls()
+{
 
-$URL = "https://bilweb.se/sok?query=&type=1&limit=1000&scrollid=12787640";
+    $URL = "https://bilweb.se/sok?query=&type=1&limit=1000&scrollid=12787640";
 
-$html = file_get_contents($URL);
+    $html = file_get_contents($URL);
 
-$start = stripos($html, 'id="vehicle_card"');
-// echo $start;
-$end = stripos($html, '<!-- .tabs-panel -->', $start);
+    if ($html === false) {
+        throw new Exception('Website did not load');
+    }
 
-$length = $end - $start;
+    $start = stripos($html, 'id="vehicle_card"');
 
-$htmlselection  = substr($html, $start,$length);
+    if ($start === false) {
+        throw new Exception('Could not find vehicle_card in the HTML.');
+    }
+    // echo $start;
+    $end = stripos($html, '<!-- .tabs-panel -->', $start);
 
-// echo $htmlselection;
+    if ($end === false) {
+        throw new Exception('Could not find end of vehicle list.');
+    }
 
-$dom = new DOMDocument();
-libxml_use_internal_errors(true);
+    $length = $end - $start;
 
-$dom->loadHTML('<?xml encoding="utf-8" ?>' . $htmlselection);
+    $htmlselection  = substr($html, $start, $length);
 
-$xpath = new DOMXPath($dom);
+    // echo $htmlselection;
 
-$links = $xpath->query("//a[contains(@class, 'go_to_detail')]");
+    $dom = new DOMDocument();
+    libxml_use_internal_errors(true);
 
-echo "Found " . $links->length . " vehicles.\n";
+    $dom->loadHTML('<?xml encoding="utf-8" ?>' . $htmlselection);
+
+    $xpath = new DOMXPath($dom);
+
+    $links = $xpath->query("//a[contains(@class, 'go_to_detail')]");
+
+    echo "Found " . $links->length . " vehicles.\n";
 
 
-$CAR_URL = [];
-foreach($links as $link) {
-    $url = $link->getAttribute('href');
-    array_push($CAR_URL, $url);
+    $CAR_URL = [];
+    foreach ($links as $link) {
+        $url = $link->getAttribute('href');
+        array_push($CAR_URL, $url);
+    }
+
+
+    return $CAR_URL;
 }
 
-
-return $CAR_URL;
-}
-
-function getCarInfo($url) {
+function getCarInfo($url)
+{
     //description xpath    //p[contains(@class, 'viewDescription')]
 
     //info box    xpath    //ul[contains(@class, 'List--horizontal')]//li
@@ -62,20 +77,20 @@ function getCarInfo($url) {
     // $description->
     // var_dump($description->nodeValue);
     // echo $description->nodeValue . " \n";
-    
+
     $car->description = $description->nodeValue ?? null;
 
 
     $infoBox = $xpath->query("//ul[contains(@class, 'List--horizontal')]//li");
     $specs = [];
-    foreach($infoBox as $item) {
+    foreach ($infoBox as $item) {
         $labelNode = $xpath->query(".//h5", $item)->item(0);
         $valueNode = $xpath->query(".//p", $item)->item(0);
 
         if ($labelNode && $valueNode) {
 
-            $label= trim($labelNode->nodeValue);
-            $value= trim($valueNode->nodeValue);
+            $label = trim($labelNode->nodeValue);
+            $value = trim($valueNode->nodeValue);
             $specs[$label] = $value;
         }
     }
@@ -94,8 +109,8 @@ function getCarInfo($url) {
 
 
     $car->model_year       = filter_var($specs['Årsmodell'] ?? null, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
-    $car->horsepower       = filter_var($specs['Hästkrafter'] ?? null, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE); 
-    
+    $car->horsepower       = filter_var($specs['Hästkrafter'] ?? null, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
+
     $car->mileage          = normaliseMileage($specs['Mil'] ?? null);
     $car->acceleration      = normaliseAcceleration($specs['0-100km/h'] ?? null);
     $car->fuel_consumption  = normaliseFuelConsumption($specs['Förbrukning'] ?? null);
