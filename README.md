@@ -33,3 +33,16 @@ Run the scraper:
 Start the application:
 
     php -S localhost:8080
+
+## API
+
+`GET /api/cars`
+
+Parameters:
+
+- `brand`
+- `model_year`
+- `regNum`
+- `limit`
+
+Returns JSON.
